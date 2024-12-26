@@ -7,7 +7,7 @@ import 'swiper/css'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-const MovieSlider = () => {
+const FoodSlider = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const swiperRef = useRef<any>(null)
 
@@ -68,4 +68,4 @@ const MovieSlider = () => {
   )
 }
 
-export default MovieSlider
+export default FoodSlider
