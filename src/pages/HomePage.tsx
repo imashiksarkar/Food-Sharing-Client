@@ -57,6 +57,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
       <section className='showcase py-8 pt-4'>
         <div className='con'>
           <h2 className='text-2xl font-bold mb-4 text-center'>Showcase</h2>
@@ -98,43 +99,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      {/* <section className='upcoming-movies'>
-        <div className='con'>
-          <h1 className='text-2xl font-bold mb-4'>Upcoming Movies</h1>
-          <div className='grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] auto-rows-[200px]  gap-4'>
-            <img
-              className='w-full h-full object-cover block md:col-span-2'
-              src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR9gHxWXNMUr3lMJr4W8rWpVh6vwyjriJ6bQ&s'
-              alt='1'
-            />
-            <img
-              className='w-full h-full object-cover block'
-              src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzxsbBVRy2cML4NcnwsTPa6yQf5gWZxhc69sXai35urQDrXCDqOiqSVHD7QMCNA8YOfUI&usqp=CAU'
-              alt='1'
-            />
-            <img
-              className='w-full h-full object-cover block md:row-span-2'
-              src='https://e1.pxfuel.com/desktop-wallpaper/998/938/desktop-wallpaper-brahmastra-bollywood-2022-movie-poster-thumbnail.jpg'
-              alt='1'
-            />
-            <img
-              className='w-full h-full object-cover block'
-              src='https://i.redd.it/rw1uaprbvaqa1.jpg'
-              alt='1'
-            />
-            <img
-              className='w-full h-full object-cover block'
-              src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpX5zqSMWOtM-glD5pKu8IRRdpFnUtjy_SSQ&s'
-              alt='1'
-            />
-            <img
-              className='w-full h-full object-cover block'
-              src='https://middaycdn.s.llnwi.net/Radiocity-images/images/uploads/web-stories/5movieposter1_ws.jpg'
-              alt='1'
-            />
-          </div>
-        </div>
-      </section> */}
     </section>
   )
 }

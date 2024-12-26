@@ -1,9 +1,10 @@
 import logo from '@/assets/logo.png'
 import { FiFacebook, FiLinkedin, FiTwitter } from 'react-icons/fi'
+import { Button } from './ui/button'
 
 const Footer = () => {
   return (
-    <footer className='bg-secondary mt-12'>
+    <footer className='bg-red-600 mt-12'>
       <div className='con text-center py-8 grid grid-cols-1 gap-10 md:grid-cols-3'>
         <div className='brand flex flex-col gap-4'>
           <img src={logo} alt='logo' className='w-16' />
@@ -86,7 +87,23 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className='text-center py-4 bg-slate-300 dark:bg-slate-900'>
+      {/* Newsletter */}
+      <div className='con bg-red-600 pb-8 pt-2 w-full flex gap-4 flex-col md:flex-row items-center justify-between'>
+        <h1 className='text-2xl font-medium'>Subscribe to our newsletter</h1>
+        <form className='flex flex-col sm:flex-row gap-2 sm:gap-0'>
+          <input
+            type='email'
+            name='email'
+            placeholder='Enter your email'
+            className='w-full max-w-xs p-2 bg-gray-900 outline-none
+            rounded-md sm:rounded-e-none'
+          />
+          <Button type='submit' className='rounded-md sm:rounded-s-none w-full sm:w-max'>
+            Subscribe
+          </Button>
+        </form>
+      </div>
+      <div className='text-center py-4 bg-red-500'>
         <p>&copy;{new Date().getFullYear()} All Right Reserved.</p>
       </div>
     </footer>

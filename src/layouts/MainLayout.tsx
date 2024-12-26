@@ -1,7 +1,7 @@
+import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import { Toaster } from '@/components/ui/toaster'
 import { Outlet } from 'react-router'
-// import Footer from '@/components/Footer'
 
 const MainLayout = () => {
   return (
@@ -11,7 +11,7 @@ const MainLayout = () => {
         <Outlet />
       </main>
       <Toaster />
-      {/* <Footer /> */}
+      <Footer />
     </section>
   )
 }
