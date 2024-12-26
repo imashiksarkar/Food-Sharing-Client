@@ -1,7 +1,10 @@
+import Login from '@/features/auth/Login'
+import Signup from '@/features/auth/Signup'
 import MainLayout from '@/layouts/MainLayout'
 import HomePage from '@/pages/HomePage'
 import NotFound from '@/pages/NotFound'
-import { createBrowserRouter } from 'react-router'
+import { createBrowserRouter, Navigate } from 'react-router'
+import RequireAuth from './RequireAuth'
 
 const router = createBrowserRouter([
   {
@@ -14,112 +17,54 @@ const router = createBrowserRouter([
         element: <HomePage />,
         loader: async () => {
           document.title = 'CV | Home'
-          // try {
-          //   const featured = await MovieService.getFeaturedMovies()
-          //   const originals = await MovieService.getNetflixOriginalMovies()
-
-          //   return { featured, originals }
-          // } catch (error) {
-          //   console.log(error)
-          // }
+          return null
         },
       },
-      // {
-      //   path: 'movies',
-      //   children: [
-      //     {
-      //       index: true,
-      //       loader: async ({ request }) => {
-      //         const pageNum = parseInt(
-      //           new URL(request.url).searchParams.get('page') || '1'
-      //         )
-
-      //         try {
-      //           return await MovieService.getMovies(pageNum)
-      //         } catch (error) {
-      //           console.log(error)
-      //           return []
-      //         }
-      //       },
-      //       element: <ExploreMovies />,
-      //     },
-      //     {
-      //       path: 'add',
-      //       element: (
-      //         <RequireAuth>
-      //           <AddMovie />
-      //         </RequireAuth>
-      //       ),
-      //     },
-      //     {
-      //       path: 'trending',
-      //       element: <TrendingMovies />,
-      //     },
-      //     {
-      //       path: ':id',
-      //       children: [
-      //         {
-      //           index: true,
-      //           element: <MovieDetail />,
-      //           loader: async ({ params }) => {
-      //             try {
-      //               return await MovieService.getMovie(params.id as string)
-      //             } catch (error) {
-      //               console.log(error)
-      //             }
-      //           },
-      //         },
-      //         {
-      //           path: 'edit',
-      //           element: (
-      //             <RequireAuth>
-      //               <EditMovie />
-      //             </RequireAuth>
-      //           ),
-      //           loader: async ({ params }) => {
-      //             try {
-      //               return await MovieService.getMovie(params.id as string)
-      //             } catch (error) {
-      //               console.log(error)
-      //             }
-      //           },
-      //         },
-      //       ],
-      //     },
-      //   ],
-      // },
-      // {
-      //   path: 'favorites',
-      //   element: (
-      //     <RequireAuth>
-      //       <ExploreFavMovies />
-      //     </RequireAuth>
-      //   ),
-      //   loader: async () => {
-      //     try {
-      //       return await FavService.getFavMovie()
-      //     } catch (error) {
-      //       console.log(error)
-      //     }
-      //   },
-      // },
-      // {
-      //   path: 'auth',
-      //   children: [
-      //     {
-      //       index: true,
-      //       element: <Navigate to={'/auth/login'} />,
-      //     },
-      //     {
-      //       path: 'login',
-      //       element: <Login />,
-      //     },
-      //     {
-      //       path: 'register',
-      //       element: <Signup />,
-      //     },
-      //   ],
-      // },
+      {
+        path: 'available-foods',
+        element: <h1>Available Foods</h1>,
+        loader: async () => {
+          document.title = 'CV | Home'
+          return null
+        },
+      },
+      {
+        path: 'dashboard',
+        element: (
+          <RequireAuth>
+            <h1>Dashboard</h1>
+          </RequireAuth>
+        ),
+        loader: async () => {
+          document.title = 'CV | Dashboard'
+          return null
+        },
+      },
+      {
+        path: 'auth',
+        children: [
+          {
+            index: true,
+            element: <Navigate to={'/auth/login'} />,
+          },
+          {
+            path: 'login',
+            element: <Login />,
+            loader: async () => {
+              document.title = 'CV | Login'
+              return null
+            },
+          },
+          {
+            path: 'register',
+            element: <Signup />,
+            loader: async () => {
+              document.title = 'CV | Register'
+              return null
+            },
+          },
+        ],
+      },
     ],
   },
   {

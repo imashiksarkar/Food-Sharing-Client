@@ -1,4 +1,3 @@
-import Helmet from 'react-helmet'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -79,9 +78,6 @@ const Signup = () => {
 
   return (
     <section className='signup-page'>
-      <Helmet>
-        <title>CV | Sign Up </title>
-      </Helmet>
       <div className='con mt-12'>
         <form onSubmit={handleSubmit}>
           <Card className='mx-auto max-w-sm'>

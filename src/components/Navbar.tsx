@@ -148,21 +148,15 @@ const NavLinks = ({
         <NavLink to='/'>Home</NavLink>
       </li>
       <li>
-        <NavLink to='/movies' end>
-          Movies
+        <NavLink to='/available-foods' end>
+          Available Foods
         </NavLink>
-      </li>
-      <li>
-        <NavLink to='/movies/add'>Add Movie</NavLink>
       </li>
       {isAuthenticated && (
         <li>
-          <NavLink to='/favorites'>Favorites</NavLink>
+          <NavLink to='/dashboard'>Dashboard</NavLink>
         </li>
       )}
-      <li>
-        <NavLink to='/movies/trending'>Trending 🚀</NavLink>
-      </li>
     </ul>
   )
 }
