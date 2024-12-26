@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, useLoaderData, useNavigate } from 'react-router'
 import FavService from '../favorites/FavService'
-import MovieService from './MovieService'
+import MovieService from './FoodService'
 
 const MovieDetail = () => {
   const { user } = useAuth()

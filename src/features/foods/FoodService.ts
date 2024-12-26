@@ -68,7 +68,7 @@ export default class MovieService {
     return serverData as Movie
   }
 
-  static async updateMovie(id: string, data: Partial<Movie>) {
+  static async updateFood(id: string, data: Partial<Movie>) {
     const response = await fetch(`${this.baseUrl}/movies/${id}`, {
       method: 'PUT',
       headers: {

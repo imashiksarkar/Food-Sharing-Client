@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/pagination'
 import { MouseEvent } from 'react'
 import { Link, useLoaderData, useSearchParams } from 'react-router'
-import MovieService from './MovieService'
+import MovieService from './FoodService'
 import { Helmet } from 'react-helmet'
 
 const ExploreMovies = () => {
