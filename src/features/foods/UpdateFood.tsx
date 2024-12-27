@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useLoaderData, useNavigate, useParams } from 'react-router'
 import { z } from 'zod'
-import FoodForm from './FoodForm'
+import FoodForm from '../dashboard/FoodForm'
 import FoodService from './FoodService'
 
 const formSchema = z.object({

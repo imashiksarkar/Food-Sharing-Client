@@ -6,6 +6,8 @@ import NotFound from '@/pages/NotFound'
 import { createBrowserRouter, Navigate } from 'react-router'
 import RequireAuth from './RequireAuth'
 import ExploreFoods from '@/features/foods/ExploreFoods'
+import Dashboard from '@/features/dashboard/Dashboard'
+import AddFood from '@/features/dashboard/AddFood'
 
 const router = createBrowserRouter([
   {
@@ -33,13 +35,27 @@ const router = createBrowserRouter([
         path: 'dashboard',
         element: (
           <RequireAuth>
-            <h1>Dashboard</h1>
+            <Dashboard />
           </RequireAuth>
         ),
         loader: async () => {
           document.title = 'CV | Dashboard'
           return null
         },
+        children: [
+          {
+            index: true,
+            element: <Navigate to={'/dashboard/foods'} />,
+          },
+          {
+            path: 'foods',
+            element: <ExploreFoods />,
+          },
+          {
+            path: 'foods/new',
+            element: <AddFood />,
+          },
+        ],
       },
       {
         path: 'auth',

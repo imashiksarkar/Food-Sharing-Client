@@ -1,11 +1,11 @@
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
+import DatePicker from '@/components/ui/date-picker'
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import {
@@ -16,20 +16,19 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-import { Rating } from 'react-simple-star-rating'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const MovieForm = ({isSubmitting, form, onSubmit, isValid }: any) => {
+const MovieForm = ({ isSubmitting, form, onSubmit, isValid }: any) => {
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
       <FormField
         control={form.control}
-        name='title'
+        name='name'
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Movie Name</FormLabel>
+            <FormLabel>Food Name</FormLabel>
             <FormControl>
-              <Input placeholder='Mr. Bean' {...field} />
+              <Input placeholder='Chicken Biryani' {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -37,10 +36,10 @@ const MovieForm = ({isSubmitting, form, onSubmit, isValid }: any) => {
       />
       <FormField
         control={form.control}
-        name='poster'
+        name='photoUrl'
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Movie Poster</FormLabel>
+            <FormLabel>Food Photo</FormLabel>
             <FormControl>
               <Input placeholder='https://...' type='url' {...field} />
             </FormControl>
@@ -51,12 +50,12 @@ const MovieForm = ({isSubmitting, form, onSubmit, isValid }: any) => {
 
       <FormField
         control={form.control}
-        name='summery'
+        name='additionalNotes'
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Movie Descriptions</FormLabel>
+            <FormLabel>Additional Notes</FormLabel>
             <FormControl>
-              <Textarea placeholder='Describe movie here' {...field} />
+              <Textarea placeholder='Describe your food here' {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -65,14 +64,14 @@ const MovieForm = ({isSubmitting, form, onSubmit, isValid }: any) => {
 
       <FormField
         control={form.control}
-        name='genre'
+        name='category'
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Genre</FormLabel>
+            <FormLabel>Category</FormLabel>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
-                <SelectTrigger>
-                  <SelectValue placeholder='Select a genre to display' />
+                <SelectTrigger className='uppercase'>
+                  <SelectValue placeholder='Select a category to display' />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
@@ -83,9 +82,13 @@ const MovieForm = ({isSubmitting, form, onSubmit, isValid }: any) => {
                   'horror',
                   'romance',
                   'thriller',
-                ].map((genre) => (
-                  <SelectItem key={genre} value={genre}>
-                    {genre.toUpperCase()}
+                ].map((category) => (
+                  <SelectItem
+                    key={category}
+                    value={category}
+                    className='uppercase'
+                  >
+                    {category}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -97,17 +100,18 @@ const MovieForm = ({isSubmitting, form, onSubmit, isValid }: any) => {
 
       <FormField
         control={form.control}
-        name='releasingYear'
+        name='expiresAt'
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Releasing Year</FormLabel>
-            <FormControl>
-              <Input
-                type='number'
-                placeholder='Movie Releasing Year'
-                {...field}
-              />
-            </FormControl>
+            <span className='flex items-center gap-8'>
+              <FormLabel>Expiration Date</FormLabel>
+              <FormControl>
+                <DatePicker
+                  defaultValue={field.value}
+                  onChange={field.onChange}
+                />
+              </FormControl>
+            </span>
             <FormMessage />
           </FormItem>
         )}
@@ -115,37 +119,14 @@ const MovieForm = ({isSubmitting, form, onSubmit, isValid }: any) => {
 
       <FormField
         control={form.control}
-        name='rating'
+        name='quantity'
         render={({ field }) => (
           <FormItem className='flex flex-col'>
-            <FormLabel>Rating:</FormLabel>
-            <FormControl>
-              <Rating
-                onClick={field.onChange}
-                initialValue={field.value}
-                size={40}
-                transition
-                allowFraction
-                emptyStyle={{ display: 'flex' }}
-                SVGstyle={{ display: 'inline-block', marginBottom: 10 }}
-                style={{ marginBottom: -10 }}
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-
-      <FormField
-        control={form.control}
-        name='duration'
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Duration</FormLabel>
+            <FormLabel>Quantity</FormLabel>
             <FormControl>
               <Input
                 type='number'
-                placeholder='Movie Duration in minutes'
+                placeholder='Food quantity in grams'
                 {...field}
               />
             </FormControl>
@@ -154,23 +135,8 @@ const MovieForm = ({isSubmitting, form, onSubmit, isValid }: any) => {
         )}
       />
 
-      <FormField
-        control={form.control}
-        name='netflixOriginal'
-        render={({ field }) => (
-          <FormItem className='flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4'>
-            <FormControl>
-              <Checkbox
-                checked={field.value}
-                onCheckedChange={field.onChange}
-              />
-            </FormControl>
-            <FormLabel>Netflix Original?</FormLabel>
-          </FormItem>
-        )}
-      />
       <Button disabled={isValid} type='submit'>
-        {isSubmitting?'Submitting...':'Submit'}
+        {isSubmitting ? 'Submitting...' : 'Submit'}
       </Button>
     </form>
   )
