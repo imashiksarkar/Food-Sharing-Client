@@ -20,7 +20,6 @@ const useFetchFood = (foodId: string) =>
   useQuery({
     queryKey: ['foods', foodId],
     queryFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 5_000))
       return fetch(`${import.meta.env.VITE_API_URL}/foods/${foodId}`, {
         method: 'GET',
         headers: {

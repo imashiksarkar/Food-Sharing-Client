@@ -5,6 +5,7 @@ import FoodForm from './FoodForm'
 import { DevTool } from '@hookform/devtools'
 import { useToast } from '@/hooks/use-toast'
 import { useNavigate } from 'react-router'
+import useAddFood from '@/hooks/useAddFood'
 
 const formSchema = z.object({
   category: z.enum(['breakfast', 'lunch', 'dinner', 'snacks', 'drinks']),
@@ -36,6 +37,7 @@ const formSchema = z.object({
 const AddFood = () => {
   const { toast } = useToast()
   const navigate = useNavigate()
+  const nutation = useAddFood()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,27 +53,17 @@ const AddFood = () => {
     mode: 'all',
   })
 
-  const { isValid, isSubmitting, errors } = form.formState
-  console.log(errors)
+  const { isValid, isSubmitting } = form.formState
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log('submit', values)
-
-    fetch(`${import.meta.env.VITE_API_URL}/foods`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    nutation.mutate(values, {
+      onSuccess() {
+        toast({
+          title: 'Success!',
+          description: 'food Added Successfully.',
+        })
+        navigate('/dashboard/foods')
       },
-      credentials: 'include',
-      body: JSON.stringify(values),
-    }).then((res) => {
-      if (!res.ok) return
-
-      toast({
-        title: 'Success!',
-        description: 'food Added Successfully.',
-      })
-      navigate('/dashboard/foods')
     })
   }
 
