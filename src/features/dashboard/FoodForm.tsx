@@ -75,22 +75,17 @@ const MovieForm = ({ isSubmitting, form, onSubmit, isValid }: any) => {
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                {[
-                  'action',
-                  'comedy',
-                  'drama',
-                  'horror',
-                  'romance',
-                  'thriller',
-                ].map((category) => (
-                  <SelectItem
-                    key={category}
-                    value={category}
-                    className='uppercase'
-                  >
-                    {category}
-                  </SelectItem>
-                ))}
+                {['breakfast', 'lunch', 'dinner', 'snacks', 'drinks'].map(
+                  (category) => (
+                    <SelectItem
+                      key={category}
+                      value={category}
+                      className='uppercase'
+                    >
+                      {category}
+                    </SelectItem>
+                  )
+                )}
               </SelectContent>
             </Select>
             <FormMessage />
@@ -129,6 +124,20 @@ const MovieForm = ({ isSubmitting, form, onSubmit, isValid }: any) => {
                 placeholder='Food quantity in grams'
                 {...field}
               />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name='pickupLocation'
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Pickup Location</FormLabel>
+            <FormControl>
+              <Input placeholder='Pickup location' {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

@@ -4,16 +4,10 @@ import { z } from 'zod'
 import FoodForm from './FoodForm'
 import { DevTool } from '@hookform/devtools'
 import { useToast } from '@/hooks/use-toast'
+import { useNavigate } from 'react-router'
 
 const formSchema = z.object({
-  category: z.enum([
-    'action',
-    'comedy',
-    'drama',
-    'horror',
-    'romance',
-    'thriller',
-  ]),
+  category: z.enum(['breakfast', 'lunch', 'dinner', 'snacks', 'drinks']),
   imageUrl: z.string().url(),
   quantity: z.preprocess(
     (value) => parseInt(value as string, 10),
@@ -26,7 +20,7 @@ const formSchema = z.object({
       (value) => {
         const date = new Date(value)
 
-        if (date.getTime() > Date.now() + 1000 * 60 * 60 * 24) return true
+        if (date.getTime() > Date.now() + 1000 * 60 * 60) return true
 
         return false
       },
@@ -36,11 +30,12 @@ const formSchema = z.object({
     ),
   additionalNotes: z.string().trim().min(10, 'Min 10 chars.'),
   name: z.string().trim().min(2, 'Min 2 chars.'),
+  pickupLocation: z.string().trim().min(2, 'Min 2 chars.'),
 })
 
 const AddFood = () => {
   const { toast } = useToast()
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -49,8 +44,9 @@ const AddFood = () => {
       category: undefined,
       imageUrl: '',
       quantity: 50,
-      expiresAt: new Date(Date.now() + 1000 * 60 * 60).toISOString(),
+      expiresAt: new Date(Date.now() + 1000 * 60 * 61).toISOString(),
       additionalNotes: '',
+      pickupLocation: '',
     },
     mode: 'all',
   })
@@ -68,11 +64,14 @@ const AddFood = () => {
       },
       credentials: 'include',
       body: JSON.stringify(values),
-    })
+    }).then((res) => {
+      if (!res.ok) return
 
-    toast({
-      title: 'Success!',
-      description: 'food Added Successfully.',
+      toast({
+        title: 'Success!',
+        description: 'food Added Successfully.',
+      })
+      navigate('/dashboard/foods')
     })
   }
 
