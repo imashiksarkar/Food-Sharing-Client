@@ -99,6 +99,28 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
       })
 
       setUser(user)
+
+      const getToken = async () => {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/token`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            name: user?.displayName,
+            email: user?.email,
+            photoUrl: user?.photoURL,
+          }),
+        })
+
+        if (!res.ok) {
+          console.log(res)
+        }
+      }
+
+      getToken()
+
       setLoading(false)
     })
 

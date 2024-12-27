@@ -8,11 +8,14 @@ const Dashboard = () => {
           <ul className='flex flex-col gap-2 [&>li>a]:block [&>li>a]:p-2 [&>li>a]:bg-gray-600 [&>li>a]:rounded-md'>
             <li>
               <NavLink to='/dashboard/foods'>
-                Foods
+                My Foods
               </NavLink>
             </li>
             <li>
               <NavLink to='/dashboard/foods/new'>Add Food</NavLink>
+            </li>
+            <li>
+              <NavLink to='/dashboard/foods/request'>Requested Foods</NavLink>
             </li>
           </ul>
         </aside>

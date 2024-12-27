@@ -36,7 +36,7 @@ const MovieForm = ({ isSubmitting, form, onSubmit, isValid }: any) => {
       />
       <FormField
         control={form.control}
-        name='photoUrl'
+        name='imageUrl'
         render={({ field }) => (
           <FormItem>
             <FormLabel>Food Photo</FormLabel>

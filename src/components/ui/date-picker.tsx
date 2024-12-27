@@ -14,13 +14,13 @@ const DatePicker = ({
   onChange,
   defaultValue,
 }: {
-  onChange: (date: Date | undefined) => void
-  defaultValue: Date
+  onChange: (date: string) => void
+  defaultValue: string
 }) => {
   const [date, setDate] = useState<Date>(new Date(defaultValue))
 
   useEffect(() => {
-    onChange(date)
+    onChange(date.toISOString())
   }, [date, onChange])
 
   return (
