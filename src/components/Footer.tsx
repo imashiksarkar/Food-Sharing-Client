@@ -4,7 +4,7 @@ import { Button } from './ui/button'
 
 const Footer = () => {
   return (
-    <footer className='bg-red-600 mt-12'>
+    <footer className='bg-red-600 mt-12 text-white'>
       <div className='con text-center py-8 grid grid-cols-1 gap-10 md:grid-cols-3'>
         <div className='brand flex flex-col gap-4'>
           <img src={logo} alt='logo' className='w-16' />

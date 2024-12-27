@@ -148,7 +148,7 @@ const NavLinks = ({
         <NavLink to='/'>Home</NavLink>
       </li>
       <li>
-        <NavLink to='/available-foods' end>
+        <NavLink to='/foods' end>
           Available Foods
         </NavLink>
       </li>

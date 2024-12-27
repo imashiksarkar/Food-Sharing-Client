@@ -5,6 +5,7 @@ import HomePage from '@/pages/HomePage'
 import NotFound from '@/pages/NotFound'
 import { createBrowserRouter, Navigate } from 'react-router'
 import RequireAuth from './RequireAuth'
+import ExploreFoods from '@/features/foods/ExploreFoods'
 
 const router = createBrowserRouter([
   {
@@ -21,8 +22,8 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: 'available-foods',
-        element: <h1>Available Foods</h1>,
+        path: 'foods',
+        element: <ExploreFoods />,
         loader: async () => {
           document.title = 'CV | Home'
           return null
