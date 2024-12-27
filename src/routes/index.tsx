@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         index: true,
         element: <HomePage />,
         loader: async () => {
-          document.title = 'CV | Home'
+          document.title = 'FS | Home'
           return null
         },
       },
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
             index: true,
             element: <ExploreFoods />,
             loader: async () => {
-              document.title = 'CV | Home'
+              document.title = 'FS | Foods'
               return null
             },
           },
@@ -40,7 +40,15 @@ const router = createBrowserRouter([
             path: ':foodId',
             element: <FoodDetail />,
             loader: async () => {
-              document.title = 'CV | Home'
+              document.title = "FS | Food's Detail"
+              return null
+            },
+          },
+          {
+            path: ':foodId/edit',
+            element: <AddFood />,
+            loader: async () => {
+              document.title = "FS | Food's Detail"
               return null
             },
           },
@@ -53,10 +61,6 @@ const router = createBrowserRouter([
             <Dashboard />
           </RequireAuth>
         ),
-        loader: async () => {
-          document.title = 'CV | Dashboard'
-          return null
-        },
         children: [
           {
             index: true,
@@ -65,14 +69,18 @@ const router = createBrowserRouter([
           {
             path: 'foods',
             element: <ExploreMyFoods />,
-            loader: () => {
-              document.title = 'CV | Dashboard'
+            loader: async () => {
+              document.title = 'FS | My Foods'
               return null
             },
           },
           {
             path: 'foods/new',
             element: <AddFood />,
+            loader: () => {
+              document.title = 'FS | Add Food'
+              return null
+            },
           },
         ],
       },
@@ -87,7 +95,7 @@ const router = createBrowserRouter([
             path: 'login',
             element: <Login />,
             loader: async () => {
-              document.title = 'CV | Login'
+              document.title = 'FS | Login'
               return null
             },
           },
@@ -95,7 +103,7 @@ const router = createBrowserRouter([
             path: 'register',
             element: <Signup />,
             loader: async () => {
-              document.title = 'CV | Register'
+              document.title = 'FS | Register'
               return null
             },
           },

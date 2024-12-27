@@ -11,7 +11,7 @@ const FoodDetail = () => {
 
   return (
     <section className='food-detail'>
-      <div className='con pt-12 grid gird-cols-1 sm:grid-cols-[2fr,_3fr] gap-4'>
+      <div className='con py-12 grid gird-cols-1 sm:grid-cols-[2fr,_3fr] gap-4'>
         {isFetching ? (
           <div className='h-screen w-full flex gap-7 flex-col justify-center items-center'>
             <p>Fetching Food...</p>
@@ -34,7 +34,9 @@ const FoodDetail = () => {
                 <p>food Durations: {food.expiresAt} Mins</p>
                 <p>Releasing Year: {food.donatorName}</p>
                 <p className='capitalize'>Genre: {food.category}</p>
-                <p className='p-2 bg-red-600/15 w-max capitalize rounded-md'>{food.foodStatus}</p>
+                <p className='p-2 bg-red-600/15 w-max capitalize rounded-md'>
+                  {food.foodStatus}
+                </p>
 
                 <div className='flex items-center gap-4'>
                   {user?.email === food.authorEmail && (
