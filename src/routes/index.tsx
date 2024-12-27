@@ -8,6 +8,8 @@ import RequireAuth from './RequireAuth'
 import ExploreFoods from '@/features/foods/ExploreFoods'
 import Dashboard from '@/features/dashboard/Dashboard'
 import AddFood from '@/features/dashboard/AddFood'
+import ExploreMyFoods from '@/features/dashboard/ExploreMyFoods'
+import FoodDetail from '@/features/foods/FoodDetail'
 
 const router = createBrowserRouter([
   {
@@ -25,11 +27,24 @@ const router = createBrowserRouter([
       },
       {
         path: 'foods',
-        element: <ExploreFoods />,
-        loader: async () => {
-          document.title = 'CV | Home'
-          return null
-        },
+        children: [
+          {
+            index: true,
+            element: <ExploreFoods />,
+            loader: async () => {
+              document.title = 'CV | Home'
+              return null
+            },
+          },
+          {
+            path: ':foodId',
+            element: <FoodDetail />,
+            loader: async () => {
+              document.title = 'CV | Home'
+              return null
+            },
+          },
+        ],
       },
       {
         path: 'dashboard',
@@ -49,7 +64,11 @@ const router = createBrowserRouter([
           },
           {
             path: 'foods',
-            element: <ExploreFoods />,
+            element: <ExploreMyFoods />,
+            loader: () => {
+              document.title = 'CV | Dashboard'
+              return null
+            },
           },
           {
             path: 'foods/new',

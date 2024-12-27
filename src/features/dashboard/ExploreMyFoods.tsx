@@ -10,7 +10,7 @@ import {
 import useFetchFoods from '@/hooks/useFetchFoods'
 import { Link } from 'react-router'
 
-const ExploreFoods = () => {
+const ExploreMyFoods = () => {
   const { data: foods, isFetching } = useFetchFoods()
 
   return (
@@ -65,34 +65,8 @@ const ExploreFoods = () => {
           )}
         </div>
       </div>
-      {/* <div className='con py-8'>
-        <Pagination className='[&>ul>li>a]:text-lg [&>ul>li>a]:cursor-pointer'>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious onClick={handlePagination('prev')} />
-            </PaginationItem>
-
-            {Array(totalPage)
-              .fill(0)
-              .map((_, i) => (
-                <PaginationItem>
-                  <PaginationLink
-                    onClick={handlePagination(i + 1)}
-                    isActive={currentPage === (++i).toString()}
-                  >
-                    {i}
-                  </PaginationLink>
-                </PaginationItem>
-              ))}
-
-            <PaginationItem>
-              <PaginationNext onClick={handlePagination('next')} />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      </div> */}
     </section>
   )
 }
 
-export default ExploreFoods
+export default ExploreMyFoods
