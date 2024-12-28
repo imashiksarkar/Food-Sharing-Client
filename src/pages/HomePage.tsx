@@ -1,7 +1,19 @@
 import FoodSlider from '@/features/foods/FoodSlider'
+import { motion, useAnimation, useInView } from 'motion/react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router'
 
 const HomePage = () => {
+  const controls = useAnimation()
+  const ref = useRef(null)
+  const isInView = useInView(ref, {
+    once: true,
+    amount: 0.1,
+  })
+  useEffect(() => {
+    if (isInView) controls.start('show')
+  }, [controls, isInView])
+
   return (
     <section className='home-page'>
       <FoodSlider />
@@ -9,7 +21,16 @@ const HomePage = () => {
       <section className='featured-foods py-8'>
         <div className='con'>
           <h2 className='text-2xl font-bold mb-4'>Featured Foods</h2>
-          <div
+          <motion.ul
+            variants={{
+              show: {
+                transition: {
+                  staggerChildren: 0.05,
+                },
+              },
+            }}
+            initial='hidden'
+            animate='show'
             className='food-box-group grid
           grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))]
            gap-4'
@@ -17,44 +38,68 @@ const HomePage = () => {
             {Array(6)
               .fill(0)
               .map((_, index) => (
-                <Link
+                <motion.li
                   key={index}
-                  // TODO: add food id
-                  to='/:foodId'
-                  className="food-box bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzxsbBVRy2cML4NcnwsTPa6yQf5gWZxhc69sXai35urQDrXCDqOiqSVHD7QMCNA8YOfUI&usqp=CAU')] bg-cover bg-no-repeat bg-center h-52 flex flex-col justify-end"
+                  variants={{
+                    hidden: { scale: 0 },
+                    show: { scale: 1 },
+                  }}
                 >
-                  <h3 className='text-lg font-bold bg-black bg-opacity-80 p-4 py-1 text-white'>
-                    Bhakar Puri
-                  </h3>
-                </Link>
+                  <Link
+                    // TODO: add food id
+                    to='/:foodId'
+                    className="food-box bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzxsbBVRy2cML4NcnwsTPa6yQf5gWZxhc69sXai35urQDrXCDqOiqSVHD7QMCNA8YOfUI&usqp=CAU')] bg-cover bg-no-repeat bg-center h-52 flex flex-col justify-end"
+                  >
+                    <h3 className='text-lg font-bold bg-black bg-opacity-80 p-4 py-1 text-white'>
+                      Bhakar Puri
+                    </h3>
+                  </Link>
+                </motion.li>
               ))}
-          </div>
+          </motion.ul>
         </div>
       </section>
 
       <section className='ending-soon-foods py-8'>
         <div className='con'>
           <h2 className='text-2xl font-bold mb-4'>Expiring Soon</h2>
-          <div
+          <motion.ul
+            ref={ref}
             className='food-box-group grid
           grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))]
            gap-4'
+            variants={{
+              show: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+            initial='hidden'
+            animate={controls}
           >
             {Array(6)
               .fill(0)
               .map((_, index) => (
-                <Link
+                <motion.li
                   key={index}
-                  // TODO: add food id
-                  to='/:foodId'
-                  className="food-box bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzxsbBVRy2cML4NcnwsTPa6yQf5gWZxhc69sXai35urQDrXCDqOiqSVHD7QMCNA8YOfUI&usqp=CAU')] bg-cover bg-no-repeat bg-center h-52 flex flex-col justify-end rounded-lg"
+                  variants={{
+                    hidden: { y: 20, opacity: 0 },
+                    show: { y: 0, opacity: 1 },
+                  }}
                 >
-                  <h3 className='text-lg font-bold bg-black bg-opacity-80 p-4 py-1 text-white'>
-                    Bhakar Puri
-                  </h3>
-                </Link>
+                  <Link
+                    // TODO: add food id
+                    to='/:foodId'
+                    className="food-box bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzxsbBVRy2cML4NcnwsTPa6yQf5gWZxhc69sXai35urQDrXCDqOiqSVHD7QMCNA8YOfUI&usqp=CAU')] bg-cover bg-no-repeat bg-center h-52 flex flex-col justify-end rounded-lg"
+                  >
+                    <h3 className='text-lg font-bold bg-black bg-opacity-80 p-4 py-1 text-white'>
+                      Bhakar Puri
+                    </h3>
+                  </Link>
+                </motion.li>
               ))}
-          </div>
+          </motion.ul>
         </div>
       </section>
 
