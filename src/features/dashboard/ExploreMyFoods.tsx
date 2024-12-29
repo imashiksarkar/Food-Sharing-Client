@@ -11,9 +11,6 @@ const ExploreMyFoods = () => {
     error,
   } = useFetchAuthorFoods(user?.email as string)
 
-  console.log(foods && foods[1]?.authorEmail);
-  
-
   return (
     <section className='explore-foods'>
       <div className='con'>
