@@ -16,6 +16,15 @@ interface IFood {
   updatedAt: string
 }
 
+interface IFoodRequest {
+  createdAt: string
+  food: IFood
+  requestedBy: string
+  status: string
+  updatedAt: string
+  _id: string
+}
+
 const useFetchRequestedFoods = () =>
   useQuery({
     queryKey: ['foods', 'author', 'request'],
@@ -26,7 +35,7 @@ const useFetchRequestedFoods = () =>
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-      }).then((res) => res.json()) as Promise<IFood[]>
+      }).then((res) => res.json()) as Promise<IFoodRequest[]>
     },
     staleTime: 60 * 1000 * 60,
   })
