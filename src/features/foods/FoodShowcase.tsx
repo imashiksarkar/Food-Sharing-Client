@@ -7,17 +7,17 @@ const FoodShowcase = () => {
           <figure className='banner'>
             <img
               className='w-full h-full object-cover'
-              src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzxsbBVRy2cML4NcnwsTPa6yQf5gWZxhc69sXai35urQDrXCDqOiqSVHD7QMCNA8YOfUI&usqp=CAU'
+              src='/showcase-1.jpg'
               alt='1'
             />
           </figure>
           <div className='content bg-orange-600 p-4 flex flex-col justify-center gap-4'>
-            <h1 className='text-2xl font-semibold'>Business Launch</h1>
+            <h1 className='text-2xl font-semibold'>Crispy KFC Chicken</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-              consequuntur delectus molestias blanditiis adipisci eveniet cum,
-              voluptas necessitatibus commodi nesciunt labore enim excepturi
-              cupiditate facilis. Non nulla aliquam distinctio atque!
+              Savor the irresistible crunch of KFC's signature crispy fried
+              chicken, perfectly complemented by the rich, tangy flavor of
+              tomato sauce. A mouthwatering combo that hits all the right notes
+              for your taste buds!
             </p>
           </div>
         </div>
@@ -25,17 +25,17 @@ const FoodShowcase = () => {
           <figure className='banner'>
             <img
               className='w-full h-full object-cover'
-              src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzxsbBVRy2cML4NcnwsTPa6yQf5gWZxhc69sXai35urQDrXCDqOiqSVHD7QMCNA8YOfUI&usqp=CAU'
+              src='/showcase-2.jpg'
               alt='1'
             />
           </figure>
           <div className='content bg-green-600 sm:col-start-1 sm:row-start-1 p-4 flex flex-col justify-center gap-4'>
-            <h1 className='text-2xl font-semibold'>Business Launch</h1>
+            <h1 className='text-2xl font-semibold'>Succulent Chicken Kebabs</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reprehenderit quae quod saepe? Dicta alias tempora a facilis
-              molestiae ipsum in, consequuntur magnam dolorem earum fuga ipsa
-              provident, reprehenderit deleniti praesentium?
+              These mouthwatering chicken kebabs are perfectly grilled and
+              bursting with flavor. The juicy chicken pieces are interspersed
+              with colorful bell peppers, adding a delightful sweetness and
+              crunch.
             </p>
           </div>
         </div>
