@@ -85,7 +85,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
   }
 
   const resetPassword = (email: string) => {
-    sendPasswordResetEmail(auth, email, { url: 'http://localhost:5173' })
+    sendPasswordResetEmail(auth, email, { url: import.meta.env.VITE_APP_URL })
   }
 
   const editProfile: AuthProviderState['editProfile'] = (payload) => {
