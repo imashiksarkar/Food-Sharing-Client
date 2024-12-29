@@ -1,8 +1,8 @@
-# [CineVerse](https://cv.ashiksarkar.xyz) - A Movie Portal
+# [FoodSharing](https://fs.ashiksarkar.xyz) - A Food Sharing Platform
 
-## About CineVerse
+## About the Project
 
-CineVerse is a movie portal where you can find information about movies, including their details, trailers, and reviews. It's a user-friendly platform that helps you discover and explore a wide range of movies.
+This project is a web application that allows users to share food among themselves. It provides a platform for food enthusiasts to connect with like-minded individuals and share their favorite dishes.
 
 ## Used Technologies
 
@@ -18,22 +18,18 @@ CineVerse is a movie portal where you can find information about movies, includi
 
 **React Router:** A routing solution from React, enabling navigation between different pages and components in a single-page application.
 
+**TanStack Query:** A state management solution from React, simplifying data fetching and caching for efficient data management.
+
 ## Features
 
 **User Authentication:** Users can sign up, log in, and log out, ensuring secure access to personalized features.
 
 **Responsive Design:** The interface is optimized for various screen sizes, ensuring a consistent and enjoyable experience across devices.
 
-**Movie Details:** Detailed information about each movie, including trailers, reviews, and ratings.
+**Sorting:** Users can sort food items based on their preferences, habitat, or other criteria.
 
-**Favorites:** Users can bookmark their favorite movies and habitats for quick access.
+**Sharing:** Users can share their favorite food items with others, fostering a community of food enthusiasts.
 
-**Sorting:** Sort movies by title, genre, or habitat.
+**Requests:** Users can request specific food items, allowing others to fulfill their needs.
 
-**Pagination:** Navigate through the list of movies in multiple pages.
-
-**Add Movie:** User can add new movies to the database.
-
-**Delete Movie:** User can delete movies from the database.
-
-**Update Movie:** User can update movie details.
+**Updating:** Users can update their profile information, including their name, email, and profile picture.
