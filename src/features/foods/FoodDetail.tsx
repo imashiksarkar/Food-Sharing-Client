@@ -52,7 +52,7 @@ const FoodDetail = () => {
                 <div className='flex items-center gap-4'>
                   {user?.email === food.authorEmail && (
                     <>
-                      <Button className='w-max'>
+                      <Button className='w-max' asChild>
                         <Link to={`/foods/${food._id}/edit`}>Update food</Link>
                       </Button>
                       <Button onClick={handleDeleteFood} className='w-max'>

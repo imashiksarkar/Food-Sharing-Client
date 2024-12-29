@@ -3,6 +3,7 @@ import Signup from '@/features/auth/Signup'
 import AddFood from '@/features/dashboard/AddFood'
 import Dashboard from '@/features/dashboard/Dashboard'
 import ExploreMyFoods from '@/features/dashboard/ExploreMyFoods'
+import FoodRequest from '@/features/dashboard/FoodRequest'
 import ExploreFoods from '@/features/foods/ExploreFoods'
 import FoodDetail from '@/features/foods/FoodDetail'
 import UpdateFood from '@/features/foods/UpdateFood'
@@ -80,6 +81,14 @@ const router = createBrowserRouter([
             element: <AddFood />,
             loader: () => {
               document.title = 'FS | Add Food'
+              return null
+            },
+          },
+          {
+            path: 'foods/request',
+            element: <FoodRequest />,
+            loader: () => {
+              document.title = 'FS | Food Request'
               return null
             },
           },
