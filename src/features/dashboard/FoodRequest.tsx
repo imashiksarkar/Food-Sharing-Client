@@ -19,7 +19,9 @@ const FoodRequest = () => {
     <section className='food-request'>
       <div className='con'>
         <header>
-          <h2>List Of Foods That You Requested</h2>
+          <h2 className='text-2xl font-bold'>
+            List Of Foods That You Requested
+          </h2>
         </header>
         {isFetching && <p>Fetching Foods...</p>}
         {isError && <p>{error.message}</p>}

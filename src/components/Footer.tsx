@@ -9,7 +9,8 @@ const Footer = () => {
         <div className='brand flex flex-col gap-4'>
           <img src={logo} alt='logo' className='w-16' />
           <p className='text-start max-w-[30ch]'>
-            Explore and enjoy the world of movies with CineVerse.
+            Connecting surplus food with those in need. Join us in building a
+            more just and sustainable food system.
           </p>
           <ul className='social-links flex items-center gap-6 text-2xl'>
             <li className='hover:text-red-400'>
@@ -98,7 +99,10 @@ const Footer = () => {
             className='w-full max-w-xs p-2 bg-gray-900 outline-none
             rounded-md sm:rounded-e-none'
           />
-          <Button type='submit' className='rounded-md sm:rounded-s-none w-full sm:w-max'>
+          <Button
+            type='submit'
+            className='rounded-md sm:rounded-s-none w-full sm:w-max'
+          >
             Subscribe
           </Button>
         </form>
