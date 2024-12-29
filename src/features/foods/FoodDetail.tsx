@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/contexts/AuthProvider'
+import useCreateFoodRequest from '@/hooks/useCreateFoodRequest'
 import useDeleteFood from '@/hooks/useDeleteFood'
 import useFetchFood from '@/hooks/useFetchFood'
 import { Link, useNavigate, useParams } from 'react-router'
@@ -11,6 +12,8 @@ const FoodDetail = () => {
 
   const { data: food, isFetching } = useFetchFood(foodId as string)
   const deleteFoodMutation = useDeleteFood(foodId as string)
+  const createFoodRequestMutation = useCreateFoodRequest(foodId as string)
+
   const isAuthor = user?.email === food?.authorEmail
 
   const handleDeleteFood = async () => {
@@ -22,7 +25,13 @@ const FoodDetail = () => {
   }
 
   const handleMakeRequest = async () => {
-    // navigate(`/dashboard/foods/${foodId}/request`)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    createFoodRequestMutation.mutate(null, {
+      onSuccess: () => {
+        navigate(`/foods/${foodId}`)
+      },
+    })
   }
 
   return (
