@@ -18,9 +18,9 @@ interface IFood {
 
 const useFetchFoods = () =>
   useQuery({
-    queryKey: ['foods'],
+    queryKey: ['foods', 'available'],
     queryFn: async () => {
-      return fetch(`${import.meta.env.VITE_API_URL}/foods`, {
+      return fetch(`${import.meta.env.VITE_API_URL}/foods?foodStatus=available&sort=-updatedAt`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

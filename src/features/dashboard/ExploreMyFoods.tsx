@@ -7,11 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import useFetchFoods from '@/hooks/useFetchFoods'
+import { useAuth } from '@/contexts/AuthProvider'
+import useFetchAuthorFoods from '@/hooks/useFetchAuthorFoods'
 import { Link } from 'react-router'
 
 const ExploreMyFoods = () => {
-  const { data: foods, isFetching } = useFetchFoods()
+  const { user } = useAuth()
+  const { data: foods, isFetching } = useFetchAuthorFoods(user?.email as string)
 
   return (
     <section className='explore-foods'>

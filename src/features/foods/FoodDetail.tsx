@@ -1,13 +1,24 @@
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/contexts/AuthProvider'
+import useDeleteFood from '@/hooks/useDeleteFood'
 import useFetchFood from '@/hooks/useFetchFood'
-import { Link, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 
 const FoodDetail = () => {
   const { user } = useAuth()
   const { foodId } = useParams()
+  const navigate = useNavigate()
 
   const { data: food, isFetching } = useFetchFood(foodId as string)
+  const deleteFoodMutation = useDeleteFood(foodId as string)
+
+  const handleDeleteFood = async () => {
+    deleteFoodMutation.mutate(foodId as string, {
+      onSuccess: () => {
+        navigate('/dashboard/foods')
+      },
+    })
+  }
 
   return (
     <section className='food-detail'>
@@ -44,7 +55,7 @@ const FoodDetail = () => {
                       <Button className='w-max'>
                         <Link to={`/foods/${food._id}/edit`}>Update food</Link>
                       </Button>
-                      <Button onClick={() => {}} className='w-max'>
+                      <Button onClick={handleDeleteFood} className='w-max'>
                         Delete food
                       </Button>
                     </>
