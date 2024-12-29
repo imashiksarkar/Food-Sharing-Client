@@ -97,9 +97,6 @@ const FoodForm = ({ isSubmitting, form, onSubmit, isValid }: any) => {
         control={form.control}
         name='expiresAt'
         render={({ field }) => {
-          console.log({ date: field.value })
-          // field.value = '2024-12-25T16:54:26.217Z'
-
           return (
             <FormItem>
               <span className='flex items-center gap-8'>
