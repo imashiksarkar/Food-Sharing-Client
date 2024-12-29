@@ -51,6 +51,7 @@ const FoodDetail = () => {
                     className='w-full h-full object-cover'
                     src={food.imageUrl}
                     alt={food.name}
+                    loading='lazy'
                   />
                 </figure>
               </div>

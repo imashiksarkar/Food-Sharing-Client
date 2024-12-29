@@ -33,7 +33,7 @@ const Navbar = () => {
         <nav className='flex items-center justify-between'>
           <NavLink to='/'>
             <figure className='logo'>
-              <img className='w-10' src={logo} alt='png' />
+              <img className='w-10' src={logo} alt='png' loading='lazy' />
             </figure>
           </NavLink>
 
@@ -49,11 +49,13 @@ const Navbar = () => {
                       className='block dark:hidden'
                       src={userAvatarBlack}
                       alt='Avatar'
+                      loading='lazy'
                     />
                     <img
                       className='hidden dark:block'
                       src={userAvatarWhite}
                       alt='Avatar'
+                      loading='lazy'
                     />
                   </AvatarFallback>
                 </Avatar>

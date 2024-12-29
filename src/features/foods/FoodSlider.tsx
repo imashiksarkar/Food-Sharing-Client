@@ -10,21 +10,24 @@ const sliders = [
   {
     id: 1,
     title: 'Vibrant Quinoa Power Bowl',
-    image: 'http://localhost:5173/banner/banner-3.png',
+    image:
+      'https://res.cloudinary.com/imashiksarkar/image/upload/v1735514705/ph-hosting/food-sharing/banner/banner-3_c0irgq.png',
     description:
       'A colorful and nutritious bowl featuring fluffy quinoa, fresh greens, crunchy croutons, vibrant pickled onions, creamy feta cheese, and a mix of sweet and tangy diced fruits and veggies. Perfect for a wholesome meal packed with flavor and texture!',
   },
   {
     id: 2,
     title: 'Burger Meal Combo',
-    image: 'http://localhost:5173/banner/banner-1.png',
+    image:
+      'https://res.cloudinary.com/imashiksarkar/image/upload/v1735514706/ph-hosting/food-sharing/banner/banner-1_tdc4on.png',
     description:
       'A classic meal featuring a juicy double-patty cheeseburger loaded with fresh lettuce, tomatoes, and grilled toppings, served with crispy golden fries and a refreshing bottle of Coca-Cola. A satisfying indulgence for burger lovers!',
   },
   {
     id: 3,
     title: 'Chicken Biryani Delight',
-    image: 'http://localhost:5173/banner/banner-4.png',
+    image:
+      'https://res.cloudinary.com/imashiksarkar/image/upload/v1735514706/ph-hosting/food-sharing/banner/banner-4_duexld.png',
     description:
       'A rich and aromatic dish of perfectly spiced basmati rice layered with tender, juicy chicken drumsticks, garnished with fresh cilantro, sliced onions, and zesty lemon wedges. A true treat for lovers of flavorful Indian cuisine!',
   },

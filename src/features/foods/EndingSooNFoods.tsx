@@ -55,6 +55,7 @@ const EndingSooNFoods = () => {
                     className='w-full h-full object-cover max-w-[600px] aspect-[1.5/1]'
                     src={food.imageUrl}
                     alt={food.name}
+                    loading='lazy'
                   />
                   <summary className='bg-black bg-opacity-80 p-4 py-1 text-white'>
                     {food.name}

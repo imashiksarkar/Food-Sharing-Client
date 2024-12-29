@@ -39,6 +39,7 @@ const FoodCards = ({ foods }: { foods: IFood[] }) => {
                 className='w-full h-full object-cover'
                 src={food.imageUrl}
                 alt={food.name}
+                loading='lazy'
               />
             </figure>
             <CardTitle className='pt-5 pb-3'>{food.name}</CardTitle>

@@ -7,8 +7,9 @@ const FoodShowcase = () => {
           <figure className='banner'>
             <img
               className='w-full h-full object-cover'
-              src='/showcase-1.jpg'
-              alt='1'
+              src='https://res.cloudinary.com/imashiksarkar/image/upload/v1735514744/ph-hosting/food-sharing/showcase/showcase-1_gevfbq.jpg'
+              alt='showcase-1'
+              loading='lazy'
             />
           </figure>
           <div className='content bg-orange-600 p-4 flex flex-col justify-center gap-4'>
@@ -25,8 +26,9 @@ const FoodShowcase = () => {
           <figure className='banner'>
             <img
               className='w-full h-full object-cover'
-              src='/showcase-2.jpg'
-              alt='1'
+              src='https://res.cloudinary.com/imashiksarkar/image/upload/v1735514744/ph-hosting/food-sharing/showcase/showcase-2_q8vmpd.jpg'
+              alt='showcase-2'
+              loading='lazy'
             />
           </figure>
           <div className='content bg-green-600 sm:col-start-1 sm:row-start-1 p-4 flex flex-col justify-center gap-4'>

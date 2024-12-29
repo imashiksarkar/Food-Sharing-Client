@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className='bg-red-600 pt-6 text-white'>
       <div className='con text-center py-8 grid grid-cols-1 gap-10 md:grid-cols-3'>
         <div className='brand flex flex-col gap-4'>
-          <img src={logo} alt='logo' className='w-16' />
+          <img src={logo} alt='logo' className='w-16' loading='lazy' />
           <p className='text-start max-w-[30ch]'>
             Connecting surplus food with those in need. Join us in building a
             more just and sustainable food system.
