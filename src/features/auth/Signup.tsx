@@ -78,7 +78,7 @@ const Signup = () => {
 
   return (
     <section className='signup-page'>
-      <div className='con mt-12'>
+      <div className='con my-12'>
         <form onSubmit={handleSubmit}>
           <Card className='mx-auto max-w-sm'>
             <CardHeader>
