@@ -28,6 +28,7 @@ const useFetchFood = (foodId: string) =>
       }).then((res) => res.json()) as Promise<IFood>
     },
     staleTime: 60 * 1000 * 60,
+    experimental_prefetchInRender: true,
   })
 
 export default useFetchFood

@@ -5,7 +5,8 @@ import { ThemeProvider } from '@/contexts/ThemeProvider'
 import AuthProvider from '@/contexts/AuthProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-const queryClient = new QueryClient()
+// eslint-disable-next-line react-refresh/only-export-components
+export const queryClient = new QueryClient()
 
 const App = () => {
   return (

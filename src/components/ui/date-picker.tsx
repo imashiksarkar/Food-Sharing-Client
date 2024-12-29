@@ -12,10 +12,10 @@ import { useEffect, useState } from 'react'
 
 const DatePicker = ({
   onChange,
-  defaultValue,
+  defaultValue = new Date().toISOString(),
 }: {
   onChange: (date: string) => void
-  defaultValue: string
+  defaultValue?: string
 }) => {
   const [date, setDate] = useState<Date>(new Date(defaultValue))
 

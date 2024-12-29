@@ -1,92 +1,111 @@
-import { useToast } from '@/hooks/use-toast'
+import useFetchFood from '@/hooks/useFetchFood'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Suspense, useLayoutEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useLoaderData, useNavigate, useParams } from 'react-router'
+import { Await, useParams } from 'react-router'
 import { z } from 'zod'
 import FoodForm from '../dashboard/FoodForm'
-import FoodService from './FoodService'
+
+let oldDate: string | null = null
 
 const formSchema = z.object({
-  duration: z
-    .preprocess((value) => {
-      const parsedValue = parseInt(value as string, 10)
-      return isNaN(parsedValue) ? undefined : parsedValue
-    }, z.number())
-    .refine((value) => value >= 60, {
-      message: 'Must be at least 60 minutes',
-    })
-    .default(60),
-  genre: z
-    .enum(['action', 'comedy', 'drama', 'horror', 'romance', 'thriller'])
-    .default('action'),
-  poster: z.string().url().default(''),
-  rating: z
-    .number()
-    .transform((value) => parseFloat(value.toFixed(1)))
-    .refine((value) => !isNaN(value) && value >= 1 && value <= 5, {
-      message: 'Must be between 0 and 5',
-    })
-    .default(3.5),
-  releasingYear: z
-    .preprocess((value) => {
-      const parsedValue = parseInt(value as string, 10)
-      return isNaN(parsedValue) ? undefined : parsedValue
-    }, z.number())
-    .default(1500)
-    .refine((value) => value >= 1500 && value <= 2030, {
-      message: 'Must be between 1500 and 2030',
-    }),
-  summery: z.string().trim().min(10, 'Min 10 chars.').default(''),
-  title: z.string().trim().min(2, 'Min 2 chars.').default(''),
-  netflixOriginal: z.boolean().default(false),
+  category: z.enum(['breakfast', 'lunch', 'dinner', 'snacks', 'drinks']),
+  imageUrl: z.string().url(),
+  quantity: z.preprocess(
+    (value) => parseInt(value as string, 10),
+    z.number().min(50, 'Qty. must be at least 50 grams.')
+  ),
+  expiresAt: z
+    .string()
+    .datetime()
+    .refine(
+      (value) => {
+        const newDateTime = new Date(value).getTime()
+        const oldDateTime = new Date(oldDate as string).getTime()
+
+        return newDateTime >= oldDateTime
+      },
+      {
+        message: 'Date must be greater than or equal to old date.',
+      }
+    ),
+  additionalNotes: z.string().trim().min(10, 'Min 10 chars.'),
+  name: z.string().trim().min(2, 'Min 2 chars.'),
+  pickupLocation: z.string().trim().min(2, 'Min 2 chars.'),
+  foodStatus: z.enum(['available', 'unavailable']),
 })
 
-const UpdateFood = () => {
-  const { id } = useParams()
+type FormSchema = z.infer<typeof formSchema>
+type CategoryEnum = z.infer<typeof formSchema>['category']
+type FoodStatusEnum = z.infer<typeof formSchema>['foodStatus']
 
-  const navigate = useNavigate()
-  const { toast } = useToast()
-
-  const foodData = useLoaderData() as z.infer<typeof formSchema>
-
+const UpdateFoodForm = ({
+  initialData,
+  id,
+}: {
+  initialData: FormSchema
+  id: string
+}) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: foodData,
+    defaultValues: initialData,
     mode: 'all',
   })
-
   const { isValid } = form.formState
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    if (!id) return
+  useLayoutEffect(() => {
+    oldDate = initialData.expiresAt
+  }, [initialData.expiresAt])
 
-    FoodService.updateFood(id, values)
-      .then((res) => {
-        toast({
-          title: 'Success!',
-          description: 'food Updated Successfully.',
-        })
-
-        navigate(`/foods/${res._id}`)
-      })
-      .catch((error: Error) => {
-        console.log(error)
-
-        toast({
-          title: 'Could Not Update food.',
-          description: error.message,
-        })
-      })
+  function handleSubmit(values: FormSchema) {
+    console.log(values, id)
   }
-
   return (
     <section className='add-food'>
       <div className='con p-4 md:p-8'>
         <FormProvider {...form}>
-          <FoodForm form={form} onSubmit={onSubmit} isValid={!isValid} />
+          <FoodForm form={form} onSubmit={handleSubmit} isValid={!isValid} />
         </FormProvider>
       </div>
     </section>
+  )
+}
+
+const UpdateFood = () => {
+  const { foodId } = useParams()
+
+  const { error, promise: foodDataPromise } = useFetchFood(foodId as string)
+
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <Await resolve={foodDataPromise} errorElement={<p>{error?.message}</p>}>
+        {({
+          name,
+          category,
+          imageUrl,
+          quantity,
+          expiresAt,
+          additionalNotes,
+          pickupLocation,
+          foodStatus,
+          _id,
+        }) => (
+          <UpdateFoodForm
+            id={_id}
+            initialData={{
+              name,
+              category: category as CategoryEnum,
+              imageUrl,
+              quantity,
+              expiresAt,
+              additionalNotes,
+              pickupLocation,
+              foodStatus: foodStatus as FoodStatusEnum,
+            }}
+          />
+        )}
+      </Await>
+    </Suspense>
   )
 }
 

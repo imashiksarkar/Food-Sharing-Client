@@ -1,15 +1,16 @@
 import Login from '@/features/auth/Login'
 import Signup from '@/features/auth/Signup'
+import AddFood from '@/features/dashboard/AddFood'
+import Dashboard from '@/features/dashboard/Dashboard'
+import ExploreMyFoods from '@/features/dashboard/ExploreMyFoods'
+import ExploreFoods from '@/features/foods/ExploreFoods'
+import FoodDetail from '@/features/foods/FoodDetail'
+import UpdateFood from '@/features/foods/UpdateFood'
 import MainLayout from '@/layouts/MainLayout'
 import HomePage from '@/pages/HomePage'
 import NotFound from '@/pages/NotFound'
 import { createBrowserRouter, Navigate } from 'react-router'
 import RequireAuth from './RequireAuth'
-import ExploreFoods from '@/features/foods/ExploreFoods'
-import Dashboard from '@/features/dashboard/Dashboard'
-import AddFood from '@/features/dashboard/AddFood'
-import ExploreMyFoods from '@/features/dashboard/ExploreMyFoods'
-import FoodDetail from '@/features/foods/FoodDetail'
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
           },
           {
             path: ':foodId/edit',
-            element: <AddFood />,
+            element: <UpdateFood />,
             loader: async () => {
               document.title = "FS | Food's Detail"
               return null

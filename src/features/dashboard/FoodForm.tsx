@@ -18,7 +18,7 @@ import {
 import { Textarea } from '@/components/ui/textarea'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const MovieForm = ({ isSubmitting, form, onSubmit, isValid }: any) => {
+const FoodForm = ({ isSubmitting, form, onSubmit, isValid }: any) => {
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
       <FormField
@@ -96,20 +96,25 @@ const MovieForm = ({ isSubmitting, form, onSubmit, isValid }: any) => {
       <FormField
         control={form.control}
         name='expiresAt'
-        render={({ field }) => (
-          <FormItem>
-            <span className='flex items-center gap-8'>
-              <FormLabel>Expiration Date</FormLabel>
-              <FormControl>
-                <DatePicker
-                  defaultValue={field.value}
-                  onChange={field.onChange}
-                />
-              </FormControl>
-            </span>
-            <FormMessage />
-          </FormItem>
-        )}
+        render={({ field }) => {
+          console.log({ date: field.value })
+          // field.value = '2024-12-25T16:54:26.217Z'
+
+          return (
+            <FormItem>
+              <span className='flex items-center gap-8'>
+                <FormLabel>Expiration Date</FormLabel>
+                <FormControl>
+                  <DatePicker
+                    defaultValue={field.value}
+                    onChange={field.onChange}
+                  />
+                </FormControl>
+              </span>
+              <FormMessage />
+            </FormItem>
+          )
+        }}
       />
 
       <FormField
@@ -151,4 +156,4 @@ const MovieForm = ({ isSubmitting, form, onSubmit, isValid }: any) => {
   )
 }
 
-export default MovieForm
+export default FoodForm
