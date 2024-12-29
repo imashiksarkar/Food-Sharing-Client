@@ -2,9 +2,10 @@ import useFetchFood from '@/hooks/useFetchFood'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Suspense, useLayoutEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { Await, useParams } from 'react-router'
+import { Await, useNavigate, useParams } from 'react-router'
 import { z } from 'zod'
 import FoodForm from '../dashboard/FoodForm'
+import useUpdateFood from '@/hooks/useUpdateFood'
 
 let oldDate: string | null = null
 
@@ -32,12 +33,10 @@ const formSchema = z.object({
   additionalNotes: z.string().trim().min(10, 'Min 10 chars.'),
   name: z.string().trim().min(2, 'Min 2 chars.'),
   pickupLocation: z.string().trim().min(2, 'Min 2 chars.'),
-  foodStatus: z.enum(['available', 'unavailable']),
 })
 
 type FormSchema = z.infer<typeof formSchema>
 type CategoryEnum = z.infer<typeof formSchema>['category']
-type FoodStatusEnum = z.infer<typeof formSchema>['foodStatus']
 
 const UpdateFoodForm = ({
   initialData,
@@ -46,6 +45,8 @@ const UpdateFoodForm = ({
   initialData: FormSchema
   id: string
 }) => {
+  const navigate = useNavigate()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData,
@@ -57,8 +58,14 @@ const UpdateFoodForm = ({
     oldDate = initialData.expiresAt
   }, [initialData.expiresAt])
 
+  const updateFoodMutation = useUpdateFood(id)
+
   function handleSubmit(values: FormSchema) {
-    console.log(values, id)
+    updateFoodMutation.mutate(values, {
+      onSuccess: () => {
+        navigate(`/foods/${id}`)
+      },
+    })
   }
   return (
     <section className='add-food'>
@@ -87,7 +94,6 @@ const UpdateFood = () => {
           expiresAt,
           additionalNotes,
           pickupLocation,
-          foodStatus,
           _id,
         }) => (
           <UpdateFoodForm
@@ -100,7 +106,6 @@ const UpdateFood = () => {
               expiresAt,
               additionalNotes,
               pickupLocation,
-              foodStatus: foodStatus as FoodStatusEnum,
             }}
           />
         )}
