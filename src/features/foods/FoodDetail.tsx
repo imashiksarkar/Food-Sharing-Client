@@ -5,12 +5,13 @@ import useFetchFood from '@/hooks/useFetchFood'
 import { Link, useNavigate, useParams } from 'react-router'
 
 const FoodDetail = () => {
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
   const { foodId } = useParams()
   const navigate = useNavigate()
 
   const { data: food, isFetching } = useFetchFood(foodId as string)
   const deleteFoodMutation = useDeleteFood(foodId as string)
+  const isAuthor = user?.email === food?.authorEmail
 
   const handleDeleteFood = async () => {
     deleteFoodMutation.mutate(foodId as string, {
@@ -20,10 +21,14 @@ const FoodDetail = () => {
     })
   }
 
+  const handleMakeRequest = async () => {
+    // navigate(`/dashboard/foods/${foodId}/request`)
+  }
+
   return (
     <section className='food-detail'>
       <div className='con py-12 grid gird-cols-1 sm:grid-cols-[2fr,_3fr] gap-4'>
-        {isFetching ? (
+        {isFetching || loading ? (
           <div className='h-screen w-full flex gap-7 flex-col justify-center items-center'>
             <p>Fetching Food...</p>
           </div>
@@ -50,7 +55,7 @@ const FoodDetail = () => {
                 </p>
 
                 <div className='flex items-center gap-4'>
-                  {user?.email === food.authorEmail && (
+                  {isAuthor && (
                     <>
                       <Button className='w-max' asChild>
                         <Link to={`/foods/${food._id}/edit`}>Update food</Link>
@@ -59,6 +64,11 @@ const FoodDetail = () => {
                         Delete food
                       </Button>
                     </>
+                  )}
+                  {!isAuthor && food.foodStatus === 'available' && (
+                    <Button onClick={handleMakeRequest} className='w-max'>
+                      Make Request
+                    </Button>
                   )}
                 </div>
               </div>

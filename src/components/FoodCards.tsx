@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button'
-import { Link } from 'react-router'
 import {
   Card,
   CardContent,
@@ -8,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { Link } from 'react-router'
 
 interface IFood {
   _id: string

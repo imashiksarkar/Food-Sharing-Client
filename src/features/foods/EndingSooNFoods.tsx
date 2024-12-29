@@ -52,7 +52,7 @@ const EndingSooNFoods = () => {
               >
                 <figure>
                   <img
-                    className='w-full h-full object-cover'
+                    className='w-full h-full object-cover max-w-[600px] aspect-[1.5/1]'
                     src={food.imageUrl}
                     alt={food.name}
                   />
