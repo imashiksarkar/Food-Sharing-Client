@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import getFormattedDate from '@/lib/getFormattedDate'
 import { Link } from 'react-router'
 
 interface IFood {
@@ -25,18 +26,7 @@ interface IFood {
   updatedAt: string
 }
 
-const getFormattedDate = (dateString: string) => {
-  const date = new Date(dateString)
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: true,
-    timeZone: 'Asia/Dhaka',
-  })
-}
+
 
 const FoodCards = ({ foods }: { foods: IFood[] }) => {
   return (
@@ -57,11 +47,9 @@ const FoodCards = ({ foods }: { foods: IFood[] }) => {
             </CardDescription>
           </CardHeader>
           <CardContent className='flex flex-col gap-2 p-0'>
-            <p>
-              Releasing Year: {getFormattedDate(food.expiresAt) || 'Unknown'}
-            </p>
-            <p className='capitalize'>Genre: {food.category}</p>
-            <p className='capitalize'>Duration: {food.quantity} mins</p>
+            <p>Expires At: {getFormattedDate(food.expiresAt) || 'Unknown'}</p>
+            <p className='capitalize'>Category: {food.category}</p>
+            <p className='capitalize'>Quantity: {food.quantity} grams</p>
             <p className='capitalize p-2 bg-red-400/20 w-max rounded-md'>
               {food.foodStatus}
             </p>

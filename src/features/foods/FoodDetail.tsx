@@ -3,6 +3,7 @@ import { useAuth } from '@/contexts/AuthProvider'
 import useCreateFoodRequest from '@/hooks/useCreateFoodRequest'
 import useDeleteFood from '@/hooks/useDeleteFood'
 import useFetchFood from '@/hooks/useFetchFood'
+import getFormattedDate from '@/lib/getFormattedDate'
 import { Link, useNavigate, useParams } from 'react-router'
 
 const FoodDetail = () => {
@@ -56,9 +57,10 @@ const FoodDetail = () => {
               <div className='details flex flex-col gap-4'>
                 <h1 className='text-4xl font-bold'>{food.name}</h1>
                 <p>{food.additionalNotes}</p>
-                <p>food Durations: {food.expiresAt} Mins</p>
-                <p>Releasing Year: {food.donatorName}</p>
-                <p className='capitalize'>Genre: {food.category}</p>
+                <p>Expires At: {getFormattedDate(food.expiresAt)}</p>
+                <p>Donated By: {food.donatorName}</p>
+                <p className='capitalize'>Category: {food.category}</p>
+                <p className='capitalize'>Quantity: {food.quantity} grams</p>
                 <p className='p-2 bg-red-600/15 w-max capitalize rounded-md'>
                   {food.foodStatus}
                 </p>
