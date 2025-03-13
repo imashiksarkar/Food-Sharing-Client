@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router'
 
 const EndingSooNFoods = () => {
-  const { data, isFetching, isError, error } = useFetchExpiringSoonFoods()
+  const { data, isLoading, isError, error } = useFetchExpiringSoonFoods()
 
   const controls = useAnimation()
   const ref = useRef(null)
@@ -15,13 +15,12 @@ const EndingSooNFoods = () => {
 
   useEffect(() => {
     if (isInView) controls.start('show')
-  }, [controls, isInView, isFetching])
+  }, [controls, isInView, isLoading])
 
   return (
     <section className='ending-soon-foods py-8'>
       <div className='con'>
         <h2 className='text-2xl font-bold mb-4'>Expiring Soon</h2>
-        {isFetching && <p>Fetching Expiring Soon Foods...</p>}
         {isError && <p>{error.message}</p>}
         <motion.ul
           ref={ref}
@@ -38,6 +37,16 @@ const EndingSooNFoods = () => {
           initial='hidden'
           animate={controls}
         >
+          {isLoading &&
+            [1, 2, 3, 4, 5, 6].map((item) => (
+              <div
+                key={item}
+                className='food-box-skeleton h-52 bg-slate-400 flex items-end animate-pulse rounded-xl overflow-hidden'
+              >
+                <div className='h-8 w-full bg-slate-500' />
+              </div>
+            ))}
+
           {data?.map((food) => (
             <motion.li
               key={food._id}
