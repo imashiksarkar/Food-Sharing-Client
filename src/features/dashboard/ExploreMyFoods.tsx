@@ -1,12 +1,13 @@
 import FoodCards from '@/components/FoodCards'
+import FoodSkeleton from '@/components/FoodSkeleton'
 import { useAuth } from '@/contexts/AuthProvider'
 import useFetchAuthorFoods from '@/hooks/useFetchAuthorFoods'
 
 const ExploreMyFoods = () => {
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
   const {
     data: foods,
-    isFetching,
+    isLoading,
     isError,
     error,
   } = useFetchAuthorFoods(user?.email as string)
@@ -15,9 +16,10 @@ const ExploreMyFoods = () => {
     <section className='explore-foods'>
       <div className='con'>
         <div className='grid grid-col-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-4'>
-          {isFetching && <p>Fetching Foods...</p>}
           {isError && <p>{error.message}</p>}
           {foods && <FoodCards foods={foods} />}
+          {(isLoading || loading) &&
+            [1, 2, 3, 4, 5, 6].map((item) => <FoodSkeleton key={item} />)}
         </div>
       </div>
     </section>

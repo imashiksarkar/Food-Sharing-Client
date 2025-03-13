@@ -11,7 +11,7 @@ const FoodDetail = () => {
   const { foodId } = useParams()
   const navigate = useNavigate()
 
-  const { data: food, isFetching } = useFetchFood(foodId as string)
+  const { data: food, isLoading } = useFetchFood(foodId as string)
   const deleteFoodMutation = useDeleteFood(foodId as string)
   const createFoodRequestMutation = useCreateFoodRequest(foodId as string)
 
@@ -35,13 +35,29 @@ const FoodDetail = () => {
     })
   }
 
+  const Skeleton = () => (
+    <div className='h-screen w-full grid grid-cols-[4fr_6fr] gap-7 col-[1/3] animate-pulse'>
+      <div className='h-full bg-slate-600' />
+      <div className='h-full flex flex-col gap-4'>
+        <div className='h-10 w-[80%] bg-slate-600' />
+        <div className='h-4 w-[20%] bg-slate-600 mt-2' />
+        <div className='h-4 w-[20%] bg-slate-600 mt-2' />
+        <div className='h-4 w-[30%] bg-slate-600 mt-2' />
+        <div className='h-4 w-[25%] bg-slate-600 mt-2' />
+        <div className='h-8 w-[12%] bg-slate-600 mt-2' />
+        <div className='mt-2'>
+          <div className='h-10 w-[20%] bg-slate-600 mr-4 inline-block' />
+          <div className='h-10 w-[20%] bg-slate-600 inline-block' />
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <section className='food-detail'>
       <div className='con py-12 grid gird-cols-1 sm:grid-cols-[2fr,_3fr] gap-4'>
-        {isFetching || loading ? (
-          <div className='h-screen w-full flex gap-7 flex-col justify-center items-center'>
-            <p>Fetching Food...</p>
-          </div>
+        {isLoading || loading ? (
+          <Skeleton />
         ) : (
           food && (
             <>
