@@ -41,7 +41,7 @@ const FeaturedFoods = () => {
                     alt={food.name}
                     loading='lazy'
                   />
-                  <summary className='bg-black bg-opacity-80 p-4 py-1 text-white'>
+                  <summary className='bg-black bg-opacity-80 p-4 py-1 text-white text-nowrap overflow-hidden'>
                     {food.name}
                   </summary>
                 </figure>
