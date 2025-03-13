@@ -77,7 +77,7 @@ const FoodDetail = () => {
                       </Button>
                     </>
                   )}
-                  {!isAuthor && food.foodStatus === 'available' && (
+                  {user && !isAuthor && food.foodStatus === 'available' && (
                     <Button onClick={handleMakeRequest} className='w-max'>
                       Make Request
                     </Button>
