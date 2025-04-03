@@ -56,7 +56,7 @@ const WhyChooseUs = () => {
           Here are some reasons why you should choose us.
         </p>
 
-        <div className='cards flex flex-col md:flex-row gap-10 items-center justify-center'>
+        <div className='cards grid gap-5 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] place-content-center text-center'>
           <Reason data={data[0]} />
           <Reason data={data[1]} />
           <Reason data={data[2]} />
