@@ -14,21 +14,32 @@ const formSchema = z.object({
     (value) => parseInt(value as string, 10),
     z.number().min(50, 'Qty. must be at least 50 grams.')
   ),
-  expiresAt: z
-    .string()
-    .datetime()
-    .refine(
-      (value) => {
-        const date = new Date(value)
+  expiresAt: z.preprocess(
+    (value) => {
+      const d = new Date(value as string)
+      d.setHours(23)
+      d.setMinutes(59)
+      d.setSeconds(59)
+      d.setMilliseconds(999)
 
-        if (date.getTime() > Date.now() + 1000 * 60 * 60) return true
+      return d.toISOString()
+    },
+    z
+      .string()
+      .datetime()
+      .refine(
+        (value) => {
+          const date = new Date(value)
 
-        return false
-      },
-      {
-        message: 'Date must be 1h to the future.',
-      }
-    ),
+          if (date.getTime() > Date.now() + 1000 * 60 * 60) return true
+
+          return false
+        },
+        {
+          message: 'Date must be 1h to the future.',
+        }
+      )
+  ),
   additionalNotes: z.string().trim().min(10, 'Min 10 chars.'),
   name: z.string().trim().min(2, 'Min 2 chars.'),
   pickupLocation: z.string().trim().min(2, 'Min 2 chars.'),
@@ -78,7 +89,9 @@ const AddFood = () => {
             isSubmitting={isSubmitting}
           />
         </FormProvider>
-        <DevTool control={form.control} />
+        {import.meta.env.VITE_ENV === 'development' && (
+          <DevTool control={form.control} />
+        )}
       </div>
     </section>
   )
