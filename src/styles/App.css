@@ -74,4 +74,16 @@
   .con {
     @apply mx-auto px-4 md:px-6 lg:px-8;
   }
+
+  .review-text {
+    @apply w-full flex items-center justify-between h-full;
+
+    &::before {
+      @apply hidden lg:block content-[''] h-full aspect-[150/500] bg-[url('/obracket.png')] bg-cover bg-no-repeat opacity-20;
+    }
+
+    &::after {
+      @apply hidden lg:block content-[''] h-full aspect-[150/500] bg-[url('/obracket.png')] bg-cover bg-no-repeat rotate-180 opacity-20;
+    }
+  }
 }
